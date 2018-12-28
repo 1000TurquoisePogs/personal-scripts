@@ -1,19 +1,10 @@
 @echo off
 if [%1]==[] goto :fail
-
-for /f "delims=" %%G in ('dir /a:d /b') do (
-cd %%G
-if exist .git (
-  echo ---- In: %%G ----
-  git branch -D %1
-) else (
-  echo %%G is not a git directory so skipping
-)
-cd ..\ )
+doforallgit git branch -D %1
 goto :finished
 
 :fail
-echo Specify a branch name
+echo Usage: gitbranchdelete <branchname>
 
 :finished
 echo Done

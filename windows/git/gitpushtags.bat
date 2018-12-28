@@ -1,0 +1,1 @@
+doforallgit git push origin --tags
