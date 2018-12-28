@@ -1,3 +1,4 @@
+@echo off
 if [%1]==[] goto :fail
 
 for /f "delims=" %%G in ('dir /a:d /b') do (
