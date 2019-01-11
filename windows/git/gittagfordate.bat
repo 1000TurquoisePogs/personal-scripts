@@ -9,19 +9,18 @@ if exist .git (
 echo ---- In: %%G ----
 
 FOR /F "tokens=* USEBACKQ" %%F IN (`git log -n 1 --format^=%%H --until^=%1`) DO (
-SET hash=%%F
+echo Tagging commit %%F as %2
+git tag %2 %%F
 )
-echo Tagging commit %hash% as %2
-git tag %2 %hash%
 
 ) else (
   echo %%G is not a git directory so skipping
 )
-cd ..\ )
+cd ..\)
 goto :finished
 
 :fail
-echo Usage: gittagfordate <date> <tag>
+echo Usage: gittagfordate ^<date^> ^<tag^>
 
 :finished
 echo Done
