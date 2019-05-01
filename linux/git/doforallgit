@@ -5,12 +5,11 @@ if [ -z "$1" ]; then
 fi
 
 start_folder=$PWD
-for D in `find . -maxdepth 1 -type d`
+for D in `find . -maxdepth 1 -type d -printf %f\\\\n`
 do
     cd $start_folder/$D
     if test -d ".git" || test -f ".git"; then
         echo "---- In: $D ----"
-        echo "Doing $*"
         $*
     else
         echo "$D is not a git directory so skipping"

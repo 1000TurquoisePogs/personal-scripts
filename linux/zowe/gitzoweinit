@@ -1,6 +1,6 @@
-@echo off
-git clone --recursive git@github.com:zowe/zlux.git %1
-cd %1
+#!/bin/sh
+git clone --recursive git@github.com:zowe/zlux.git $1
+cd $1
 git clone git@github.com:zowe/file-transfer-app.git
 git clone git@github.com:zowe/jupyter-app.git
 git clone git@github.com:zowe/db-browser.git
@@ -16,12 +16,10 @@ git clone git@github.com:zowe/zlux-workflow.git
 git clone git@github.com:zowe/zlux-editor.git
 git clone git@github.com:zowe/zosmf-auth.git
 
-call doforallgit git remote rename origin zowe
-call doforallgit git remote add origin git@github.com:%2/%%%%G.git
-call doforallgit git fetch origin
-call doforallgit git checkout staging
-goto :finished
+doforallgit git remote rename origin zowe
+gitaddremote origin $2
+doforallgit git fetch origin
+doforallgit git checkout staging
 
-:finished
-echo Done
-
+echo "Done"
+exit 0
