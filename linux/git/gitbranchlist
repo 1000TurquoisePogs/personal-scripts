@@ -1,0 +1,4 @@
+#!/bin/sh
+doforallgit git branch
+echo "Done"
+exit 0

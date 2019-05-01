@@ -1,0 +1,3 @@
+#!/bin/sh
+doforallgit git push origin --tags
+exit 0

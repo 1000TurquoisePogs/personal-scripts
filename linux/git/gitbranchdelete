@@ -1,0 +1,19 @@
+#!/bin/sh
+if [ -z "$1" ]; then
+    echo "Usage: gitbranchdelete <branchname>"
+    exit 1
+fi
+
+argCount=0
+for b in $*
+do
+  argCount=$((argCount+1))
+  if $argCount -neq 1 then
+     echo "---- Deleting branch: $b ----"
+     doforallgit git branch -D $b
+  fi
+done
+
+
+echo "Done"
+exit 0

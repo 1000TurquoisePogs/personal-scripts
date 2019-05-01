@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ -z "$1" ]; then
+    echo "Usage: gitbranchcreate <branchname>"
+    exit 1
+fi
+doforallgit git checkout -b $1
+echo "Done"
+exit 0
