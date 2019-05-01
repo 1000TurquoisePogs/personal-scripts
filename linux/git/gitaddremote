@@ -1,0 +1,19 @@
+#!/bin/sh
+if [ "$#" -ne 2 ]; then
+    echo "Usage: gitaddremote <name> <owner>"
+    exit 1
+fi
+
+start_folder=$PWD
+for D in `find . -maxdepth 1 -type d -printf %f\\\\n`
+do
+    cd $start_folder/$D
+    if test -d ".git" || test -f ".git"; then
+        echo "---- In: $D ----"
+        git remote add $1 git@github.com:${2}/${D}.git
+    else
+        echo "$D is not a git directory so skipping"
+    fi
+    cd $start_folder
+done
+exit 0

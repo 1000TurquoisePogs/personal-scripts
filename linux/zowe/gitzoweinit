@@ -16,10 +16,12 @@ git clone git@github.com:zowe/zlux-workflow.git
 git clone git@github.com:zowe/zlux-editor.git
 git clone git@github.com:zowe/zosmf-auth.git
 
-doforallgit git remote rename origin zowe
-gitaddremote origin $2
-doforallgit git fetch origin
-doforallgit git checkout staging
+
+dir=`dirname "$(readlink -f "$0")"`
+$dir/../git/doforallgit git remote rename origin zowe
+$dir/../git/gitaddremote origin $2
+$dir/../git/doforallgit git fetch origin
+$dir/../git/doforallgit git checkout staging
 
 echo "Done"
 exit 0
